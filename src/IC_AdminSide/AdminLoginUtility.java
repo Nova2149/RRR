@@ -1,16 +1,19 @@
 package IC_AdminSide;
 
-import UserSide.Config;
+
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import IC_UserSide.ProjectConfig;
 
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 
-public class AdminLoginUtility extends Config {
+import static java.lang.System.getProperties;
+
+public class AdminLoginUtility extends ProjectConfig {
     By admin_email_input=By.xpath("//input[@id='admin_email']");
     By admin_password_input=By.xpath("//input[@id='admin_password']");
     By login_btn=By.xpath("//button[contains(text(),'Login')]");

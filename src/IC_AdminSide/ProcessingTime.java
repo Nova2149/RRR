@@ -2,6 +2,7 @@ package IC_AdminSide;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -46,15 +47,205 @@ public class ProcessingTime extends AdminLoginUtility{
         Assert.assertFalse(driver.findElement(tr_visitor_input).isEnabled());
         Assert.assertFalse(driver.findElement(pr_input).isEnabled());
         Assert.assertTrue(driver.findElement(edit_button).isEnabled());
-        Assert.assertTrue(driver.findElement(update_button).isEnabled());
+        Assert.assertFalse(driver.findElement(update_button).isEnabled());
         System.out.println(driver.getCurrentUrl());
         System.out.println(driver.getTitle());
         Properties prop=getProperties();
         Assert.assertTrue(driver.getCurrentUrl().equals(prop.getProperty("ic_admin_processing_time_url")));
         Assert.assertTrue(driver.getTitle().equals("Processing Time"));
 
+    }
+    //Empty study
+    @Test
+    public void tc1() throws IOException {
+        WebDriver driver=Login();
+        Properties prop=getProperties();
+        driver.get(prop.getProperty("ic_admin_processing_time_url"));
+        driver.findElement(edit_button).click();
+        driver.findElement(tr_student_input).clear();
+        driver.findElement(tr_work_input).clear();
+        driver.findElement(tr_visitor_input).clear();
+        driver.findElement(pr_input).clear();
+        driver.findElement(tr_student_input).sendKeys("");
+        driver.findElement(tr_work_input).sendKeys("22");
+        driver.findElement(tr_visitor_input).sendKeys("33");
+        driver.findElement(pr_input).sendKeys("44");
+        driver.findElement(update_button).click();
+        Alert a =driver.switchTo().alert();
+        a.accept();
 
+        driver.quit();
 
+    }
+
+    //Empty work Field
+    @Test
+    public void tc2() throws IOException {
+        WebDriver driver=Login();
+        Properties prop=getProperties();
+        driver.get(prop.getProperty("ic_admin_processing_time_url"));
+        driver.findElement(edit_button).click();
+        driver.findElement(tr_student_input).clear();
+        driver.findElement(tr_work_input).clear();
+        driver.findElement(tr_visitor_input).clear();
+        driver.findElement(pr_input).clear();
+        driver.findElement(tr_student_input).sendKeys("44");
+        driver.findElement(tr_work_input).sendKeys("");
+        driver.findElement(tr_visitor_input).sendKeys("33");
+        driver.findElement(pr_input).sendKeys("44");
+        driver.findElement(update_button).click();
+        Alert a =driver.switchTo().alert();
+        a.accept();
+
+        driver.quit();
+    }
+    //Empty visitor
+    @Test
+    public void tc3() throws IOException {
+        WebDriver driver=Login();
+        Properties prop=getProperties();
+        driver.get(prop.getProperty("ic_admin_processing_time_url"));
+        driver.findElement(edit_button).click();
+        driver.findElement(tr_student_input).clear();
+        driver.findElement(tr_work_input).clear();
+        driver.findElement(tr_visitor_input).clear();
+        driver.findElement(pr_input).clear();
+        driver.findElement(tr_student_input).sendKeys("66");
+        driver.findElement(tr_work_input).sendKeys("22");
+        driver.findElement(tr_visitor_input).sendKeys("");
+        driver.findElement(pr_input).sendKeys("44");
+        driver.findElement(update_button).click();
+        Alert a =driver.switchTo().alert();
+        a.accept();
+
+        driver.quit();
+    }
+
+    //Empty permanent residency
+    @Test
+    public void tc4() throws IOException {
+        WebDriver driver=Login();
+        Properties prop=getProperties();
+        driver.get(prop.getProperty("ic_admin_processing_time_url"));
+        driver.findElement(edit_button).click();
+        driver.findElement(tr_student_input).clear();
+        driver.findElement(tr_work_input).clear();
+        driver.findElement(tr_visitor_input).clear();
+        driver.findElement(pr_input).clear();
+        driver.findElement(tr_student_input).sendKeys("33");
+        driver.findElement(tr_work_input).sendKeys("22");
+        driver.findElement(tr_visitor_input).sendKeys("33");
+        driver.findElement(pr_input).sendKeys("");
+        driver.findElement(update_button).click();
+        Alert a =driver.switchTo().alert();
+        a.accept();
+
+        driver.quit();}
+    //invalid study
+    @Test
+    public void tc5() throws IOException {
+        WebDriver driver=Login();
+        Properties prop=getProperties();
+        driver.get(prop.getProperty("ic_admin_processing_time_url"));
+        driver.findElement(edit_button).click();
+        driver.findElement(tr_student_input).clear();
+        driver.findElement(tr_work_input).clear();
+        driver.findElement(tr_visitor_input).clear();
+        driver.findElement(pr_input).clear();
+        driver.findElement(tr_student_input).sendKeys("ccwerfw");
+        driver.findElement(tr_work_input).sendKeys("22");
+        driver.findElement(tr_visitor_input).sendKeys("33");
+        driver.findElement(pr_input).sendKeys("44");
+        driver.findElement(update_button).click();
+        Alert a =driver.switchTo().alert();
+        a.accept();
+        driver.quit();
+    }
+    //invalid work
+    @Test
+    public void tc6() throws IOException {
+        WebDriver driver=Login();
+        Properties prop=getProperties();
+        driver.get(prop.getProperty("ic_admin_processing_time_url"));
+        driver.findElement(edit_button).click();
+        driver.findElement(tr_student_input).clear();
+        driver.findElement(tr_work_input).clear();
+        driver.findElement(tr_visitor_input).clear();
+        driver.findElement(pr_input).clear();
+        driver.findElement(tr_student_input).sendKeys("44");
+        driver.findElement(tr_work_input).sendKeys("-88");
+        driver.findElement(tr_visitor_input).sendKeys("33");
+        driver.findElement(pr_input).sendKeys("44");
+        driver.findElement(update_button).click();
+        Alert a =driver.switchTo().alert();
+        a.accept();
+
+        driver.quit();
+    }
+    //invalid visitor
+    @Test
+    public void tc7() throws IOException {
+        WebDriver driver=Login();
+        Properties prop=getProperties();
+        driver.get(prop.getProperty("ic_admin_processing_time_url"));
+        driver.findElement(edit_button).click();
+        driver.findElement(tr_student_input).clear();
+        driver.findElement(tr_work_input).clear();
+        driver.findElement(tr_visitor_input).clear();
+        driver.findElement(pr_input).clear();
+        driver.findElement(tr_student_input).sendKeys("44");
+        driver.findElement(tr_work_input).sendKeys("55");
+        driver.findElement(tr_visitor_input).sendKeys("3jtjtj");
+        driver.findElement(pr_input).sendKeys("44");
+        driver.findElement(update_button).click();
+        Alert a =driver.switchTo().alert();
+        a.accept();
+
+        driver.quit();
+    }
+
+    //invalid pr
+    @Test
+    public void tc8() throws IOException {
+        WebDriver driver=Login();
+        Properties prop=getProperties();
+        driver.get(prop.getProperty("ic_admin_processing_time_url"));
+        driver.findElement(edit_button).click();
+        driver.findElement(tr_student_input).clear();
+        driver.findElement(tr_work_input).clear();
+        driver.findElement(tr_visitor_input).clear();
+        driver.findElement(pr_input).clear();
+        driver.findElement(tr_student_input).sendKeys("44");
+        driver.findElement(tr_work_input).sendKeys("123");
+        driver.findElement(tr_visitor_input).sendKeys("33");
+        driver.findElement(pr_input).sendKeys("4r4rfr4");
+        driver.findElement(update_button).click();
+        Alert a =driver.switchTo().alert();
+        a.accept();
+
+        driver.quit();
+    }
+    //success scenario
+    @Test
+    public void tc9() throws IOException {
+        WebDriver driver=Login();
+        Properties prop=getProperties();
+        driver.get(prop.getProperty("ic_admin_processing_time_url"));
+        driver.findElement(edit_button).click();
+        driver.findElement(tr_student_input).clear();
+        driver.findElement(tr_work_input).clear();
+        driver.findElement(tr_visitor_input).clear();
+        driver.findElement(pr_input).clear();
+        driver.findElement(tr_student_input).sendKeys("120");
+        driver.findElement(tr_work_input).sendKeys("120");
+        driver.findElement(tr_visitor_input).sendKeys("120");
+        driver.findElement(pr_input).sendKeys("120");
+        driver.findElement(update_button).click();
+        Alert a =driver.switchTo().alert();
+        Assert.assertTrue(a.getText().equals("Processing Time Updated"));
+        a.accept();
+
+        driver.quit();
     }
 
 }

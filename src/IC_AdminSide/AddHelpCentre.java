@@ -2,10 +2,12 @@ package IC_AdminSide;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
+import java.util.Properties;
 
 public class AddHelpCentre extends AdminLoginUtility {
 
@@ -22,15 +24,75 @@ public class AddHelpCentre extends AdminLoginUtility {
     By add_button=By.xpath("//button[contains(text(),'Add')]");
 
     @Test
-    public void verify() throws IOException {
-        WebDriver driver=getDriver();
-        Assert.assertTrue(driver.findElement(users_navbar_link).isEnabled());
-        Assert.assertTrue(driver.findElement(applications_navbar_link).isEnabled());
-        Assert.assertTrue(driver.findElement(news_section_navbar_link).isDisplayed());
-        Assert.assertTrue(driver.findElement(webforms_navabr_link).isEnabled());
-        Assert.assertTrue(driver.findElement(help_centre_navabr_link).isEnabled());
-        Assert.assertTrue(driver.findElement(processing_time_navbar_link).isEnabled());
-
-        driver.findElement(help_centre_navabr_link).click();
+    public void verify() throws IOException, InterruptedException {
+        WebDriver driver=Login();
+        Properties prop=getProperties();
+        driver.get(prop.getProperty("ic_admin_help_url"));
+        Assert.assertTrue(driver.getCurrentUrl().equals(prop.getProperty("ic_admin_help_url")));
+        Assert.assertTrue(driver.getTitle().equals("Help Section"));
+        Assert.assertTrue(driver.findElement(help_heading).isDisplayed());
+        Assert.assertTrue(driver.findElement(help_description).isDisplayed());
+        Assert.assertTrue(driver.findElement(add_button).isDisplayed());
+        System.out.println("--End of Script--");
+        driver.quit();
     }
+
+    @Test
+    public void tc1() throws IOException, InterruptedException {
+        WebDriver driver=Login();
+        Properties prop=getProperties();
+        driver.get(prop.getProperty("ic_admin_help_url"));
+        Assert.assertTrue(driver.getCurrentUrl().equals(prop.getProperty("ic_admin_help_url")));
+        Assert.assertTrue(driver.getTitle().equals("Help Section"));
+
+        driver.findElement(help_heading).sendKeys("");
+        driver.findElement(help_description).sendKeys("New IRCC Help status");
+        driver.findElement(add_button).click();
+        Thread.sleep(2300);
+        Alert a =driver.switchTo().alert();
+        a.accept();
+        System.out.println("--End of Script--");
+        driver.quit();
+
+    }
+    @Test
+    public void tc2() throws IOException, InterruptedException {
+
+        WebDriver driver=Login();
+        Properties prop=getProperties();
+        driver.get(prop.getProperty("ic_admin_help_url"));
+        Assert.assertTrue(driver.getCurrentUrl().equals(prop.getProperty("ic_admin_help_url")));
+        Assert.assertTrue(driver.getTitle().equals("Help Section"));
+
+        driver.findElement(help_heading).sendKeys("IRCC Heading");
+        driver.findElement(help_description).sendKeys("");
+        driver.findElement(add_button).click();
+        Thread.sleep(2300);
+        Alert a =driver.switchTo().alert();
+        a.accept();
+        System.out.println("--End of Script--");
+        driver.quit();
+    }
+    //###critical test case remove the data from json once testing has been done
+    //It can create complications,otherwise
+
+    @Test
+    public void tc3() throws IOException, InterruptedException {
+        WebDriver driver=Login();
+        Properties prop=getProperties();
+        driver.get(prop.getProperty("ic_admin_help_url"));
+        Assert.assertTrue(driver.getCurrentUrl().equals(prop.getProperty("ic_admin_help_url")));
+        Assert.assertTrue(driver.getTitle().equals("Help Section"));
+
+        driver.findElement(help_heading).sendKeys("IRCC New Heading");
+        driver.findElement(help_description).sendKeys("IRCC News Description");
+        driver.findElement(add_button).click();
+        Thread.sleep(2300);
+        Alert a =driver.switchTo().alert();
+        a.accept();
+        System.out.println("--End of Script--");
+        driver.quit();
+    }
+
+
 }
