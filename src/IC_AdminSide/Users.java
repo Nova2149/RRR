@@ -17,7 +17,7 @@ public class Users extends AdminLoginUtility {
     By user_info_table=By.tagName("table");
 
     @Test
-    public void verify() throws IOException {
+    public void verify() throws IOException, InterruptedException {
         WebDriver driver=Login();
         Properties prop=getProperties();
         driver.get(prop.getProperty("ic_admmin_users_url"));
@@ -49,11 +49,11 @@ public class Users extends AdminLoginUtility {
 
         for(int i=1;i<size;i++) {
             String s = driver.findElement(user_info_table).findElements(By.tagName("tr")).get(i).findElements(By.tagName("td"))
-                    .get(5).findElement(By.tagName("button")).getText();
+                    .get(6).findElement(By.tagName("button")).getText();
             System.out.println(s);
             if (s.equals("Block")) {
                 driver.findElement(user_info_table).findElements(By.tagName("tr")).get(i).findElements(By.tagName("td"))
-                        .get(5).findElement(By.tagName("button")).click();
+                        .get(6).findElement(By.tagName("button")).click();
             } else
             {
 
@@ -88,11 +88,11 @@ public class Users extends AdminLoginUtility {
 
         for(int i=1;i<size;i++) {
             String s = driver.findElement(user_info_table).findElements(By.tagName("tr")).get(i).findElements(By.tagName("td"))
-                    .get(5).findElement(By.tagName("button")).getText();
+                    .get(6).findElement(By.tagName("button")).getText();
             System.out.println(s);
             if (s.equals("Unblock")) {
                 driver.findElement(user_info_table).findElements(By.tagName("tr")).get(i).findElements(By.tagName("td"))
-                        .get(5).findElement(By.tagName("button")).click();
+                        .get(6).findElement(By.tagName("button")).click();
             } else
             {
 
@@ -122,6 +122,8 @@ public class Users extends AdminLoginUtility {
         //Temp code ends Here
 //        int size=driver.findElement(user_info_table).findElements(By.tagName("tr")).size();
 //        System.out.println(size);
+        List<String> user_id_list=new ArrayList<>();
+
         List<String> family_name_list=new ArrayList<>();
         List<String> given_name_list=new ArrayList<>();
         List<String> email_list=new ArrayList<>();
@@ -129,23 +131,26 @@ public class Users extends AdminLoginUtility {
         List<String> status_list=new ArrayList<>();
         for(int i=1;i<size;i++)
         {
+            user_id_list.add(driver.findElement(user_info_table).findElements(By.tagName("tr")).get(i).findElements(By.tagName("td"))
+                    .get(1).getText());
             family_name_list.add(driver.findElement(user_info_table).findElements(By.tagName("tr")).get(i).findElements(By.tagName("td"))
-                    .get(0).getText());
+                    .get(1).getText());
 
             given_name_list.add(driver.findElement(user_info_table).findElements(By.tagName("tr")).get(i).findElements(By.tagName("td"))
-                    .get(1).getText());
-            email_list.add(driver.findElement(user_info_table).findElements(By.tagName("tr")).get(i).findElements(By.tagName("td"))
                     .get(2).getText());
-            phone_list.add(driver.findElement(user_info_table).findElements(By.tagName("tr")).get(i).findElements(By.tagName("td"))
+            email_list.add(driver.findElement(user_info_table).findElements(By.tagName("tr")).get(i).findElements(By.tagName("td"))
                     .get(3).getText());
-            status_list.add(driver.findElement(user_info_table).findElements(By.tagName("tr")).get(i).findElements(By.tagName("td"))
+            phone_list.add(driver.findElement(user_info_table).findElements(By.tagName("tr")).get(i).findElements(By.tagName("td"))
                     .get(4).getText());
+            status_list.add(driver.findElement(user_info_table).findElements(By.tagName("tr")).get(i).findElements(By.tagName("td"))
+                    .get(5).getText());
         }
         for(String s:family_name_list)
         {
             System.out.println(s);
 
         }
+        Assert.assertTrue(user_id_list.isEmpty());
         Assert.assertFalse(family_name_list.isEmpty());
         Assert.assertFalse(given_name_list.isEmpty());
         Assert.assertFalse(email_list.isEmpty());
@@ -164,7 +169,7 @@ public class Users extends AdminLoginUtility {
 //        driver.get(prop.getProperty("ic_admmin_users_url"));
 //        Thread.sleep(3500);
 //        driver.findElement(user_info_table).findElements(By.tagName("tr")).get(2).findElements(By.tagName("td"))
-//                .get(6).findElement(By.tagName("button")).click();
+//                .get(7).findElement(By.tagName("button")).click();
 //        System.out.println("User deleted success");
 //        driver.quit();
 //

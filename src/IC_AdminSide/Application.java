@@ -31,7 +31,7 @@ public class Application extends AdminLoginUtility {
     By return_button=By.xpath("//button[contains(text(),'Return')]");
 
     @Test
-    public void verify() throws IOException {
+    public void verify() throws IOException, InterruptedException {
         WebDriver driver=Login();
         Properties prop=getProperties();
         driver.get(prop.getProperty("ic_admin_applications_url"));

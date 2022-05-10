@@ -31,7 +31,7 @@ public class ProcessingTime extends AdminLoginUtility{
     By update_button=By.xpath("//button[contains(text(),'Update')]");
 
     @Test
-    public void verify() throws IOException {
+    public void verify() throws IOException, InterruptedException {
        WebDriver driver= Login();
        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         Assert.assertTrue(driver.findElement(users_navbar_link).isEnabled());
@@ -57,7 +57,7 @@ public class ProcessingTime extends AdminLoginUtility{
     }
     //Empty study
     @Test
-    public void tc1() throws IOException {
+    public void tc1() throws IOException, InterruptedException {
         WebDriver driver=Login();
         Properties prop=getProperties();
         driver.get(prop.getProperty("ic_admin_processing_time_url"));
@@ -80,7 +80,7 @@ public class ProcessingTime extends AdminLoginUtility{
 
     //Empty work Field
     @Test
-    public void tc2() throws IOException {
+    public void tc2() throws IOException, InterruptedException {
         WebDriver driver=Login();
         Properties prop=getProperties();
         driver.get(prop.getProperty("ic_admin_processing_time_url"));
@@ -101,7 +101,7 @@ public class ProcessingTime extends AdminLoginUtility{
     }
     //Empty visitor
     @Test
-    public void tc3() throws IOException {
+    public void tc3() throws IOException, InterruptedException {
         WebDriver driver=Login();
         Properties prop=getProperties();
         driver.get(prop.getProperty("ic_admin_processing_time_url"));
@@ -123,7 +123,7 @@ public class ProcessingTime extends AdminLoginUtility{
 
     //Empty permanent residency
     @Test
-    public void tc4() throws IOException {
+    public void tc4() throws IOException, InterruptedException {
         WebDriver driver=Login();
         Properties prop=getProperties();
         driver.get(prop.getProperty("ic_admin_processing_time_url"));
@@ -143,7 +143,7 @@ public class ProcessingTime extends AdminLoginUtility{
         driver.quit();}
     //invalid study
     @Test
-    public void tc5() throws IOException {
+    public void tc5() throws IOException, InterruptedException {
         WebDriver driver=Login();
         Properties prop=getProperties();
         driver.get(prop.getProperty("ic_admin_processing_time_url"));
@@ -163,7 +163,7 @@ public class ProcessingTime extends AdminLoginUtility{
     }
     //invalid work
     @Test
-    public void tc6() throws IOException {
+    public void tc6() throws IOException, InterruptedException {
         WebDriver driver=Login();
         Properties prop=getProperties();
         driver.get(prop.getProperty("ic_admin_processing_time_url"));
@@ -184,7 +184,7 @@ public class ProcessingTime extends AdminLoginUtility{
     }
     //invalid visitor
     @Test
-    public void tc7() throws IOException {
+    public void tc7() throws IOException, InterruptedException {
         WebDriver driver=Login();
         Properties prop=getProperties();
         driver.get(prop.getProperty("ic_admin_processing_time_url"));
@@ -206,7 +206,7 @@ public class ProcessingTime extends AdminLoginUtility{
 
     //invalid pr
     @Test
-    public void tc8() throws IOException {
+    public void tc8() throws IOException, InterruptedException {
         WebDriver driver=Login();
         Properties prop=getProperties();
         driver.get(prop.getProperty("ic_admin_processing_time_url"));
@@ -227,7 +227,7 @@ public class ProcessingTime extends AdminLoginUtility{
     }
     //success scenario
     @Test
-    public void tc9() throws IOException {
+    public void tc9() throws IOException, InterruptedException {
         WebDriver driver=Login();
         Properties prop=getProperties();
         driver.get(prop.getProperty("ic_admin_processing_time_url"));

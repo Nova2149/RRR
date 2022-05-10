@@ -28,6 +28,7 @@ public class SignIn extends ProjectConfig {
         Assert.assertTrue(driver.findElement(login_btn).isEnabled());
         driver.quit();
     }
+    //Login Successfull
     @Test
     public void t1() throws IOException {
         WebDriver driver=getDriver();
@@ -42,6 +43,7 @@ public class SignIn extends ProjectConfig {
 
 
     }
+    //Invalid Username
     @Test
     public void t2() throws IOException {
         WebDriver driver=getDriver();
@@ -55,6 +57,7 @@ public class SignIn extends ProjectConfig {
         driver.quit();
 
     }
+    //Invalid Password
     @Test
     public void t3() throws IOException {
         WebDriver driver=getDriver();
@@ -87,6 +90,19 @@ public class SignIn extends ProjectConfig {
         Properties prop=getProperties();
         driver.get(prop.getProperty("ic_user_signin_url"));
         driver.findElement(user_email).sendKeys("ad1@gmail.com");
+        driver.findElement(user_password).sendKeys("");
+        driver.findElement(login_btn).click();
+        Alert a =driver.switchTo().alert();
+        a.accept();
+        driver.quit();
+    }
+    //Both Fields left Empty
+    @Test
+    public void tc6() throws IOException {
+        WebDriver driver=getDriver();
+        Properties prop=getProperties();
+        driver.get(prop.getProperty("ic_user_signin_url"));
+        driver.findElement(user_email).sendKeys("");
         driver.findElement(user_password).sendKeys("");
         driver.findElement(login_btn).click();
         Alert a =driver.switchTo().alert();

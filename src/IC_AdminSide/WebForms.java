@@ -21,7 +21,7 @@ public class WebForms extends AdminLoginUtility {
     By webform_enquiry_message=By.xpath("//textarea[@id='webform_enquiry']");
     By return_button=By.xpath("//button[contains(text(),'Return')]");
     @Test
-    public void verify() throws IOException {
+    public void verify() throws IOException, InterruptedException {
         WebDriver driver=Login();
         Properties prop=getProperties();
         driver.get(prop.getProperty("ic_admin_webform_url"));
@@ -34,7 +34,7 @@ public class WebForms extends AdminLoginUtility {
     }
     //all webforms should be listed on the WebForm Page
     @Test
-    public void tc1() throws IOException {
+    public void tc1() throws IOException, InterruptedException {
         WebDriver driver=Login();
         Properties prop=getProperties();
         driver.get(prop.getProperty("ic_admin_webform_url"));
